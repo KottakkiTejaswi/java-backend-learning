@@ -22,12 +22,44 @@ double	64-bit	3.14159	Decimal numbers, double precision
 char	16-bit	'A'	Single character
 boolean	1-bit	true/false	Logical values
 
-**Non-Primitive Types**
+**Non-Primitive (Wrapper/Object) Types**
 String — sequence of characters, immutable.
 Arrays — fixed-size collection of elements.
 
 - Primitives are stored in stack memory.
-- Objects (String, arrays, etc.) are stored in heap memory and accessed via references.
+- Objects (String, arrays, Integer, Double, Boolean, Character, Long, Float, Short, Byte etc.) are stored in heap memory and accessed via references.
+
+🔹 Performance & Safety Considerations
+Primitives:
+
+- Faster execution
+
+- Less memory usage
+
+- No null checks required
+
+- No auto-boxing/unboxing overhead
+
+Wrapper Types:
+
+- Slightly slower
+
+- Risk of NullPointerException
+
+- Necessary for collections and optional values
+
+**Prefer primitive types when a value is mandatory and null has no meaning.**
+**Use wrapper types when representing absence of value, working with collections, or handling external data.**
+
+🔹 Relation to Spring Boot & Backend Systems
+
+- Request/Response DTOs → Wrapper types
+
+- Business logic → Primitive types
+
+- Database entities → Wrapper types
+
+- Configuration values → Primitive types
 
 ## 3️⃣ Variables
 
