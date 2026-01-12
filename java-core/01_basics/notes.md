@@ -98,11 +98,47 @@ switch (variable) {
     default: ...
 }
 
+**if / else**
+
+- Used for binary decisions
+
+- Always use braces {} (clean code practice)
+
+**else if**
+
+- Evaluated top to bottom
+
+- First matching condition executes
+
+- Order conditions from most specific → least specific
+
+**switch**
+
+- Cleaner than long else-if chains
+
+- Use break to avoid fall-through
+
 **Loops**
 - for, while, do-while
 
 - Enhanced for loop:
   for (int num : array) { ... }
+
+**break vs continue**
+
+- break → exits loop completely
+
+- continue → skips current iteration
+
+
+🚨 Common Beginner Mistakes 
+
+❌ Infinite loops
+❌ Missing break in switch
+❌ Using == instead of .equals() for Strings
+❌ Complex nested if blocks (bad readability)
+
+
 
 ## 6️⃣ Methods
 
