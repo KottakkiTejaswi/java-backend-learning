@@ -152,6 +152,42 @@ public int add(int a, int b) {
 - void → method does not return anything
 - Methods help organize code and reduce duplication 
 
+**What is a method?**
+
+A method is a block of code that:
+
+- performs a specific task
+
+- can accept inputs (parameters)
+
+- can return a value
+
+**returnType methodName(parameters)**
+
+**Parameters vs Arguments**
+add(int x, int y)  // parameters
+add(a, b)         // arguments
+
+
+- Parameters → variables in method definition
+
+- Arguments → actual values passed
+
+**Return type**
+
+- void → returns nothing
+
+- Any other type → must return a value
+
+public static void greet(String name) { ... }  // void
+public static int add(int x, int y) { ... }    // returns int
+
+❗ Java is PASS-BY-VALUE — always
+
+- Java is strictly pass-by-value.
+- For primitives, the value is copied.
+- For objects, the reference is copied, so the object’s internal state can be modified, but the reference itself cannot be changed.
+
 ## 7️⃣ Object-Oriented Basics
 
 - Class: blueprint for objects
