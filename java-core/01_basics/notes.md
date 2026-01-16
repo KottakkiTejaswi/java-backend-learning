@@ -144,9 +144,9 @@ switch (variable) {
 
 Define reusable behavior inside a class.
 
-public int add(int a, int b) {
+```public int add(int a, int b) {
     return a + b;
-}
+}```
 
 - Parameters vs Return type
 - void → method does not return anything
@@ -188,7 +188,196 @@ public static int add(int x, int y) { ... }    // returns int
 - For primitives, the value is copied.
 - For objects, the reference is copied, so the object’s internal state can be modified, but the reference itself cannot be changed.
 
-## 7️⃣ Object-Oriented Basics
+## 7️⃣ Arrays 
+**What is an array?**
+- An array is a fixed-size, indexed collection of elements
+
+- All elements must be of the same type
+
+- Stored in contiguous memory
+
+```int[] numbers = new int[5];```
+
+**Array Indexing**
+- Index starts at 0
+- Last index = length - 1
+numbers[5]; // ArrayIndexOutOfBoundsException
+
+**length property**
+```numbers.length```
+
+- length is a property, not a method
+
+- No parentheses
+
+**Enhanced for loop (for-each)
+```for (int num : numbers) { ... }```
+
+- you don’t need the index
+
+- you only want to read values
+
+❌ Cannot modify the array index directly here
+
+Arrays are objects
+
+- Stored in heap
+
+- Passed by reference value
+
+- Can be modified inside methods
+
+```public static void update(int[] arr) {
+    arr[0] = 100;
+}
+```
+**Default values in arrays**
+|   Type	|   Default value	|   
+|--------	|-------------	    |
+|   int	    |   0	            |   	
+|   double	|   0.0	            |   	
+|   boolean	|  false            |   
+|   object	|  null             |  	
+
+
+🚨 Common mistakes
+
+❌ Forgetting arrays are fixed size
+❌ Off-by-one errors
+❌ Using enhanced for when index is needed
+❌ Assuming arrays auto-resize (they don’t)
+
+## 9 Strings
+- String objects are immutable
+
+- Stored internally as a sequence of characters
+
+- Extremely commonly used → heavily optimized by JVM
+
+**What does immutability mean?**
+Immutability = cannot be changed after creation
+
+Once a String object is created, its value never changes.
+
+```String s = "Hello";
+s.concat(" World");
+System.out.println(s);  // Hello
+```
+
+
+Why?
+
+- concat() does not modify s
+
+- It creates a new String object
+
+Correct way:
+
+```s = s.concat(" World");```
+
+**Why does Java make String immutable?**
+🔐 Security
+
+Strings are used in:
+
+- file paths
+
+- database URLs
+
+- class loaders
+
+- environment variables
+
+If strings were mutable, malicious code could modify values after validation.
+
+🧵 Thread Safety
+
+Immutable objects are inherently thread-safe.
+
+- Multiple threads can share the same string safely.
+
+♻️ String Pool Optimization
+
+Immutability allows JVM to reuse strings safely.
+
+**String Pool**
+```
+String a = "Java";
+String b = "Java";
+```
+Both a and b point to the same object in the String Constant Pool.
+But:
+```String c = new String("Java");```
+This creates:
+one object in heap
+one reference in pool (if not already present)
+
+**String Comparision**
+**==**
+
+compares references
+
+checks if both variables point to the same object
+
+**.equals()**
+
+compares content
+
+📌 Always use .equals() for strings
+
+**Common String Operations**
+
+|  Operation 	      |  Example 	            |   	
+|---	              |---	                    |
+|   Length	          |   str.length()	        |   	
+|  Character access   |  str.charAt(0) 	        |   	
+|   Substring	      |   str.substring(1, 4)	|   
+|   Contains	      |   str.contains("abc")	| 
+|   Replace	          |   str.replace("a", "b")	| 
+|   Case Change	      |   str.toUpperCase()	    | 
+|   Trim     	      |   str.trim()            | 
+|   Split     	      |   str.split(",")        | 
+
+⚠️ All of these return new String objects.
+
+**String Concatenation & Performance**
+```
+String s = "";
+for (int i = 0; i < 1000; i++) {
+    s += i;
+}
+```
+❌ Inefficient because:
+
+- creates many temporary String objects
+
+- wastes memory
+
+Better approach:
+```
+StringBuilder sb = new StringBuilder();
+for (int i = 0; i < 1000; i++) {
+    sb.append(i);
+}
+String result = sb.toString();
+```
+
+**String vs StringBuilder vs StringBuffer**
+|  Feature 	    |   String	|  StringBuilder 	|   StringBuffer	|   
+|---	        |---	    |---	            |---	            |
+|   Mutable	    |   ❌      |   	    ✅         |   	  ✅          |  
+|   Thread-safe	|   ✅      |   	    ❌         |   	  ✅          |   
+|   Performance	|   Slow    |   	Fast        |      Medium       | 
+
+📌 Use cases:
+
+String → constants, keys, configuration
+
+StringBuilder → loops, dynamic text
+
+StringBuffer → legacy multithreaded code
+
+## 8️⃣ Object-Oriented Basics
 
 - Class: blueprint for objects
 
@@ -200,12 +389,13 @@ public static int add(int x, int y) { ... }    // returns int
 
 - Polymorphism: method overloading (compile-time) & overriding (runtime)
 
-- Abstraction: abstract classes & interfaces
+- Abstraction: abstract classes & interfaces 
 
-## 8️⃣ Exception Handling
+## 9 Exception Handling
 
 - Use try-catch-finally to handle runtime errors:
 
+```
 try {
     int result = 10 / 0;
 } catch (ArithmeticException e) {
@@ -213,7 +403,9 @@ try {
 } finally {
     System.out.println("Always executes");
 }
-
+```
 - Checked vs Unchecked exceptions
 
 - Custom exceptions can extend Exception or RuntimeException
+
+
