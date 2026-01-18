@@ -1,32 +1,41 @@
 # Java Basics — Notes
 
-## 1️⃣ Java Program Structure
+## 1. Java Program Structure
 
 - **Everything in Java is inside a class.**
 - Java programs are **compiled into bytecode** and run on the **JVM (Java Virtual Machine)**.
 - Execution starts at the **main method**:
-public static void main(String[] args)
+
+=> public static void main(String[] args)
+
 - Curly braces {} define code blocks.
 - Statements end with a semicolon ;.
 - System.out.println prints text to the console.
 
-## 2️⃣ Data Types
+## 2. Data Types
 **Primitive Types**
-**Type**	**Size**	**Example	Notes**
-byte	8-bit	100	Small integers
-short	16-bit	30000	
-int	    32-bit	100000	Most common integer type
-long	64-bit	1000000000L	Large numbers
-float	32-bit	3.14f	Decimal numbers, single precision
-double	64-bit	3.14159	Decimal numbers, double precision
-char	16-bit	'A'	Single character
-boolean	1-bit	true/false	Logical values
+
+|   Type	|   Size	|   Example	|   	
+|---	|---	|---	|
+|   byte	|   8-bit	|   100	Small integers	| 
+|   short	|   16-bit	|   30000	|   	
+|   int	    |   32-bit	|   100000	| 
+|   long	|   64-bit	|   1000000000L Large numbers	| 
+|  float	|   32-bit	|   3.14f	Decimal numbers, single precision| 
+|   double	|   64-bit	|   3.14159	Decimal numbers, double precision	| 
+|   char	|   16-bit	|   'A'	Single character	| 
+|   boolean	|   1-bit	|   true/false	Logical values	| 
+
+
 
 **Non-Primitive (Wrapper/Object) Types**
+
 String — sequence of characters, immutable.
+
 Arrays — fixed-size collection of elements.
 
 - Primitives are stored in stack memory.
+
 - Objects (String, arrays, Integer, Double, Boolean, Character, Long, Float, Short, Byte etc.) are stored in heap memory and accessed via references.
 
 🔹 Performance & Safety Considerations
@@ -61,7 +70,7 @@ Wrapper Types:
 
 - Configuration values → Primitive types
 
-## 3️⃣ Variables
+## 3. Variables
 
 **Local variables**: declared inside a method, must be initialized before use.
 
@@ -73,7 +82,7 @@ Wrapper Types:
 int age = 25;
 String name = "Tejaswi";
 
-## 4️⃣ Operators
+## 4. Operators
 Arithmetic: + - * / %
 
 Comparison: == != > < >= <=
@@ -89,7 +98,7 @@ int a = 5, b = 10;
 int sum = a + b; // 15
 boolean isGreater = b > a; // true
 
-## 5️⃣ Control Flow
+## 5. Control Flow
 **Conditional Statements**
 if (condition) { ... } else { ... }
 switch (variable) {
@@ -131,22 +140,27 @@ switch (variable) {
 - continue → skips current iteration
 
 
-🚨 Common Beginner Mistakes 
+🚨 Common  Mistakes 
 
 ❌ Infinite loops
+
 ❌ Missing break in switch
+
 ❌ Using == instead of .equals() for Strings
+
 ❌ Complex nested if blocks (bad readability)
 
 
 
-## 6️⃣ Methods
+## 6. Methods
 
 Define reusable behavior inside a class.
 
-```public int add(int a, int b) {
+```
+public int add(int a, int b) {
     return a + b;
-}```
+}
+```
 
 - Parameters vs Return type
 - void → method does not return anything
@@ -162,9 +176,10 @@ A method is a block of code that:
 
 - can return a value
 
-**returnType methodName(parameters)**
+=> returnType methodName(parameters)
 
 **Parameters vs Arguments**
+
 add(int x, int y)  // parameters
 add(a, b)         // arguments
 
@@ -188,7 +203,7 @@ public static int add(int x, int y) { ... }    // returns int
 - For primitives, the value is copied.
 - For objects, the reference is copied, so the object’s internal state can be modified, but the reference itself cannot be changed.
 
-## 7️⃣ Arrays 
+## 7. Arrays 
 **What is an array?**
 - An array is a fixed-size, indexed collection of elements
 
@@ -210,7 +225,7 @@ numbers[5]; // ArrayIndexOutOfBoundsException
 
 - No parentheses
 
-**Enhanced for loop (for-each)
+**Enhanced for loop (for-each)**
 ```for (int num : numbers) { ... }```
 
 - you don’t need the index
@@ -219,7 +234,7 @@ numbers[5]; // ArrayIndexOutOfBoundsException
 
 ❌ Cannot modify the array index directly here
 
-Arrays are objects
+=> Arrays are objects
 
 - Stored in heap
 
@@ -243,11 +258,14 @@ Arrays are objects
 🚨 Common mistakes
 
 ❌ Forgetting arrays are fixed size
+
 ❌ Off-by-one errors
+
 ❌ Using enhanced for when index is needed
+
 ❌ Assuming arrays auto-resize (they don’t)
 
-## 9 Strings
+## 8. Strings
 - String objects are immutable
 
 - Stored internally as a sequence of characters
@@ -305,6 +323,7 @@ Immutability allows JVM to reuse strings safely.
 String a = "Java";
 String b = "Java";
 ```
+
 Both a and b point to the same object in the String Constant Pool.
 But:
 ```String c = new String("Java");```
@@ -377,7 +396,7 @@ StringBuilder → loops, dynamic text
 
 StringBuffer → legacy multithreaded code
 
-## 8️⃣ Object-Oriented Basics
+## 9. Object-Oriented Basics
 
 - Class: blueprint for objects
 
@@ -391,7 +410,7 @@ StringBuffer → legacy multithreaded code
 
 - Abstraction: abstract classes & interfaces 
 
-## 9 Exception Handling
+## 10. Exception Handling
 
 - Use try-catch-finally to handle runtime errors:
 
