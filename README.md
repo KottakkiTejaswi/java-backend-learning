@@ -19,4 +19,4 @@ The focus here is on:
 
 ---
 
-This repository is a work in progress — and that’s intentional.
+This repository is a work in progress — Continuous learning.
