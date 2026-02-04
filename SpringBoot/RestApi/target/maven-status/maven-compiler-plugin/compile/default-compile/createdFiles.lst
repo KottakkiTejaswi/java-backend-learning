@@ -1,2 +1,3 @@
 com/tejaswi/Application.class
 com/tejaswi/controller/HelloController.class
+com/tejaswi/dto/HelloResponseDto.class
