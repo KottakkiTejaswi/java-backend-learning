@@ -5,11 +5,11 @@ package com.tejaswi.taskmanager.controller;
 // Controllers are typically annotated with @RestController or @Controller.
 
 
-import com.tejaswi.taskmanager.model.Task;
-import com.tejaswi.taskmanager.service.TaskService;
-import org.springframework.web.bind.annotation.*;
+import com.tejaswi.taskmanager.model.Task; // This imports the Task class, which is a model representing a task in the application. The controller will use this class to represent tasks in the API requests and responses.
+import com.tejaswi.taskmanager.service.TaskService; // This imports the TaskService class, which contains the business logic for managing tasks. The controller will use this service to handle incoming requests related to tasks.
+import org.springframework.web.bind.annotation.*; // This imports the necessary annotations for defining REST endpoints, such as @RestController, @RequestMapping, @GetMapping, @PostMapping, and @RequestBody.
 
-import java.util.List;
+import java.util.List; // This imports the List interface from the java.util package, which is used to represent a list of Task objects in the getAllTasks() method.
 
 @RestController //Returns JSON directly. 
 // If we used @Controller, we would need to use @ResponseBody on each method to indicate that the return value should be serialized to JSON and sent in the response body.
