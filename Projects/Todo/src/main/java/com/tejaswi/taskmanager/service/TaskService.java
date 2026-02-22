@@ -18,10 +18,10 @@ public class TaskService {
     }
 
     public List<Task> getAllTasks() { // This method retrieves a list of all tasks by calling the findAll() method of the TaskRepository and returns it.
-        return repository.findAll();
+        return repository.findAll(); // The findAll() method is a common method provided by Spring Data JPA repositories that retrieves all records from the database table associated with the Task entity and returns them as a list of Task objects.
     }
 
-    public void createTask(Task task) {
-        repository.save(task);
+    public void createTask(Task task) { // This method creates a new task by accepting a Task object as a parameter and passing it to the save() method of the TaskRepository.
+        repository.save(task); // The save() method is a common method provided by Spring Data JPA repositories that saves the given entity (in this case, a Task object) to the database.
     }
 }
