@@ -1,5 +1,7 @@
 package com.tejaswi.taskmanager.dto;
 
+// This DTO is used to send task data back to the client, including the task's ID and completion status.
+
 public class TaskResponseDTO {
 
     private Long id;
@@ -8,7 +10,7 @@ public class TaskResponseDTO {
     private boolean completed;
 
     // No-args constructor
-    public TaskResponseDTO() {
+    public TaskResponseDTO() { 
     }
 
     public TaskResponseDTO(Long id, String title, String description, boolean completed) {
