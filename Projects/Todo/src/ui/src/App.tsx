@@ -1,41 +1,82 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sparkles } from "lucide-react";
 import { TaskCard } from "./components/TaskCard";
 import { AddTask } from "./components/AddTask";
 import { StatsCard } from "./components/StatsCard";
 
 interface Task {
-  id: string;
-  text: string;
+  id: number;
+  title: string;
+  description?: string;
   completed: boolean;
+  createdAt?: string;
 }
 
 export default function App() {
-  const [tasks, setTasks] = useState<Task[]>([
-    { id: "1", text: "Review project proposal", completed: false },
-    { id: "2", text: "Buy groceries for the week", completed: true },
-    { id: "3", text: "Call mom", completed: false },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (text: string) => {
-    const newTask: Task = {
-      id: Date.now().toString(),
-      text,
-      completed: false,
-    };
-    setTasks([newTask, ...tasks]);
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch("/tasks");
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.error("Failed to fetch tasks:", error);
+    }
   };
 
-  const toggleTask = (id: string) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
+  const addTask = async (title: string) => {
+    try {
+      const response = await fetch("/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, completed: false }),
+      });
+      if (response.ok) {
+        fetchTasks();
+      }
+    } catch (error) {
+      console.error("Failed to add task:", error);
+    }
   };
 
-  const deleteTask = (id: string) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const toggleTask = async (id: number) => {
+    const taskToToggle = tasks.find(t => t.id === id);
+    if (!taskToToggle) return;
+    try {
+      const response = await fetch(`/tasks/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...taskToToggle, completed: !taskToToggle.completed }),
+      });
+      if (response.ok) {
+        const updatedTask = await response.json();
+        setTasks(tasks.map(t => t.id === id ? updatedTask : t));
+      }
+    } catch (error) {
+      console.error("Failed to toggle task:", error);
+    }
+  };
+
+  const deleteTask = async (id: number) => {
+    try {
+      const response = await fetch(`/tasks/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setTasks(tasks.filter((task) => task.id !== id));
+      }
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+    }
   };
 
   const totalTasks = tasks.length;
@@ -57,7 +98,7 @@ export default function App() {
             Keep track of your daily tasks with joy ✨
           </p>
         </div>
-     
+
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -109,8 +150,8 @@ export default function App() {
           )}
         </div>
         <div className="bg-primary text-primary-foreground p-6 rounded-xl">
-  Tailwind Theme Working 🎉
-</div>
+          Tailwind Theme Working 🎉
+        </div>
 
       </div>
     </div>

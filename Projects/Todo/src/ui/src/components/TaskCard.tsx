@@ -1,15 +1,15 @@
 import { Check, Circle, Trash2 } from "lucide-react";
 
 interface Task {
-  id: string;
-  text: string;
+  id: number;
+  title: string;
   completed: boolean;
 }
 
 interface TaskCardProps {
   task: Task;
-  onToggle: (id: string) => void;
-  onDelete: (id: string) => void;
+  onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
 export function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
@@ -43,7 +43,7 @@ export function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
           ${task.completed ? 'line-through text-muted-foreground' : 'text-card-foreground'}
         `}
       >
-        {task.text}
+        {task.title}
       </span>
       
       <button

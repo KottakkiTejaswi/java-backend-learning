@@ -21,7 +21,21 @@ public class TaskService {
         return repository.findAll(); // The findAll() method is a common method provided by Spring Data JPA repositories that retrieves all records from the database table associated with the Task entity and returns them as a list of Task objects.
     }
 
-    public void createTask(Task task) { // This method creates a new task by accepting a Task object as a parameter and passing it to the save() method of the TaskRepository.
-        repository.save(task); // The save() method is a common method provided by Spring Data JPA repositories that saves the given entity (in this case, a Task object) to the database.
+    public void createTask(Task task) { 
+        repository.save(task); 
+    }
+
+    public Task updateTask(Long id, Task updatedTask) {
+        return repository.findById(id).map(task -> {
+            task.setTitle(updatedTask.getTitle());
+            task.setDescription(updatedTask.getDescription());
+            task.setCompleted(updatedTask.isCompleted());
+            // createdAt should not be changed typically
+            return repository.save(task);
+        }).orElseThrow(() -> new RuntimeException("Task not found with id " + id));
+    }
+
+    public void deleteTask(Long id) {
+        repository.deleteById(id);
     }
 }

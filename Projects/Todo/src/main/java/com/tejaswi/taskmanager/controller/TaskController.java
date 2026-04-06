@@ -36,7 +36,16 @@ public class TaskController {
         // The @RequestBody annotation tells Spring to deserialize the JSON in the request body into a Task object.
         service.createTask(task);
         // The method returns void, which means it will return a 200 OK status with an empty body if the task is created successfully.
+    }
 
+    @PutMapping("/{id}")
+    public Task updateTask(@PathVariable Long id, @RequestBody Task task) {
+        return service.updateTask(id, task);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        service.deleteTask(id);
     }
 }
 
